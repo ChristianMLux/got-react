@@ -1,6 +1,10 @@
 import React from "react";
+
+import House from "./House";
+
 let housePageCount = 24;
 let houseCounter = 1;
+
 class AllHouses extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +17,7 @@ class AllHouses extends React.Component {
   switchPage() {
     houseCounter++;
   }
+
   componentDidMount() {
     let url = "https://www.anapioficeandfire.com/api/houses?page=1&pageSize=20";
     fetch(url)
@@ -72,7 +77,13 @@ class AllHouses extends React.Component {
           <button onClick={this.switchPage}>Next Houses</button>
           <ul>
             {houses.map((house) => (
-              <li key={house.url}>{house.name}</li>
+              <li>
+                <House
+                  key={house.url}
+                  house={house.name}
+                  index={house.url.replace(/\D/g, "")}
+                />
+              </li>
             ))}
           </ul>
         </div>

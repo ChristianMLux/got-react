@@ -1,12 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import AllHouses from "./AllHouses";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
+import HouseDetails from "./HouseDetails";
+import AllHouses from "./AllHouses";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AllHouses />
+    <Router>
+      <Switch>
+        <Route path="/:houseId" component={HouseDetails} />
+        <Route path="/" component={AllHouses} />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
