@@ -37,3 +37,8 @@
 .inner-info-heading {
   width: 30%;
 }
+
+.sworn-member-list {
+  list-style-type: none;
+  padding: 0;
+}

@@ -17,7 +17,6 @@ class HouseDetails extends React.Component {
     const apiLink = "https://anapioficeandfire.com/api/houses/" + houseID;
     const response = await fetch(apiLink);
     const json = await response.json();
-    console.log(json);
     this.setState({ house: json });
   }
   async getOverlord() {
@@ -43,8 +42,15 @@ class HouseDetails extends React.Component {
   async getSwornMembers() {
     let list = [];
     for (const member of this.state.house.swornMembers.entries()) {
-      list.push(<li>{member}</li>);
+      const response = await fetch(member[1]);
+      const json = await response.json();
+      if (json.gender === "Female") {
+        list.push(<li>Lady {json.name}</li>);
+      } else {
+        list.push(<li>Lord {json.name}</li>);
+      }
     }
+    this.setState({ swornMembers: list });
   }
   async componentDidMount() {
     await this.getHouse();
@@ -52,9 +58,11 @@ class HouseDetails extends React.Component {
     await this.getCurrentLord();
     await this.getHouseFounder();
     await this.getHeir();
+    await this.getSwornMembers();
   }
   render() {
-    const { house, overlord, currentLord, heir, founder } = this.state;
+    const { house, overlord, currentLord, heir, founder, swornMembers } =
+      this.state;
     return (
       <section className="house-detail-section">
         <div className="heading-wrapper">
@@ -65,12 +73,27 @@ class HouseDetails extends React.Component {
         <div className="info-wrapper">
           <div className="inner-info-wrapper">
             <p className="inner-info-heading">Current Lord:</p>
-            <p className="currentLord">{currentLord.name}</p>
+            <p className="currentLord">
+              {currentLord.titles ? currentLord.titles[0] : ""}
+              {currentLord.name}
+            </p>
           </div>
-
-          <p className="houseOverlord">{overlord.name}</p>
-          <p className="houseFounder">{founder.name}</p>
-          <p className="houseHeir">{heir.name}</p>
+          <div className="inner-info-wrapper">
+            <p className="inner-info-heading">Overlord:</p>
+            <p className="houseOverlord">{overlord.name}</p>
+          </div>
+          <div className="inner-info-wrapper">
+            <p className="inner-info-heading">Founder:</p>
+            <p className="houseFounder">{founder.name}</p>
+          </div>
+          <div className="inner-info-wrapper">
+            <p className="inner-info-heading">Heir:</p>
+            <p className="houseHeir">{heir.name}</p>
+          </div>
+          <div className="inner-info-wrapper">
+            <p className="inner-info-heading">Sworn Members:</p>
+            <ul class="sworn-member-list">{swornMembers}</ul>
+          </div>
         </div>
       </section>
     );
