@@ -1,6 +1,7 @@
 import React from "react";
 
 import House from "./House";
+import "./allHouses.css";
 
 let housePageCount = 24;
 let houseCounter = 1;
@@ -73,11 +74,11 @@ class AllHouses extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
+        <section className="all-houses">
           <button onClick={this.switchPage}>Next Houses</button>
-          <ul>
+          <ul className="houses-list">
             {houses.map((house) => (
-              <li>
+              <li className="single-house">
                 <House
                   key={house.url}
                   house={house.name}
@@ -86,7 +87,7 @@ class AllHouses extends React.Component {
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       );
     }
   }

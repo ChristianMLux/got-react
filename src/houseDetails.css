@@ -1,0 +1,39 @@
+.house-detail-section {
+  max-width: 80vw;
+  margin: 0 auto;
+  border: 1px solid var(--accent-color);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.heading-wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+.house-name {
+  margin: 0;
+  padding: 0.5rem 0 0.5rem 0.25rem;
+}
+.house-words {
+  padding-right: 0.5rem;
+}
+.coat-of-arms {
+  margin: 0;
+  padding: 1rem;
+  font-style: italic;
+  background-color: hsla(0, 0%, 80%, 0.43137254901960786);
+  text-align: center;
+}
+
+.info-wrapper {
+  padding: 0.5rem;
+}
+.inner-info-wrapper {
+  display: flex;
+  flex-flow: row;
+}
+.inner-info-heading {
+  width: 30%;
+}

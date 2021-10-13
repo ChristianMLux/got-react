@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./houseDetails.css";
 class HouseDetails extends React.Component {
   constructor() {
     super();
@@ -7,6 +8,7 @@ class HouseDetails extends React.Component {
       house: {},
       currentLord: {},
       overlord: {},
+      founder: {},
       heir: {},
     };
   }
@@ -26,33 +28,51 @@ class HouseDetails extends React.Component {
   async getCurrentLord() {
     const response = await fetch(this.state.house.currentLord);
     const json = await response.json();
-    this.setState({ overlord: json });
+    this.setState({ currentLord: json });
+  }
+  async getHouseFounder() {
+    const response = await fetch(this.state.house.founder);
+    const json = await response.json();
+    this.setState({ founder: json });
   }
   async getHeir() {
     const response = await fetch(this.state.house.heir);
     const json = await response.json();
     this.setState({ heir: json });
   }
+  async getSwornMembers() {
+    let list = [];
+    for (const member of this.state.house.swornMembers.entries()) {
+      list.push(<li>{member}</li>);
+    }
+  }
   async componentDidMount() {
     await this.getHouse();
     await this.getOverlord();
     await this.getCurrentLord();
+    await this.getHouseFounder();
     await this.getHeir();
   }
   render() {
-    const { house, overlord, currentLord, heir } = this.state;
+    const { house, overlord, currentLord, heir, founder } = this.state;
     return (
-      <div>
+      <section className="house-detail-section">
         <div className="heading-wrapper">
-          <h2 className="houseName">{house.name}</h2>
-          <p className="houseWords">{house.words}</p>
+          <h2 className="house-name">{house.name}</h2>
+          <p className="house-words">{house.words}</p>
         </div>
-        <p className="coatOfArms">{house.coatOfArms}</p>
-        <p className="currentLord">{currentLord.name}</p>
-        <p className="houseOverlord">{overlord.name}</p>
-        <p className="houseFounder">{house.founder}</p>
-        <p className="houseHeir">{heir.name}</p>
-      </div>
+        <p className="coat-of-arms">&#187; {house.coatOfArms} &#171;</p>
+        <div className="info-wrapper">
+          <div className="inner-info-wrapper">
+            <p className="inner-info-heading">Current Lord:</p>
+            <p className="currentLord">{currentLord.name}</p>
+          </div>
+
+          <p className="houseOverlord">{overlord.name}</p>
+          <p className="houseFounder">{founder.name}</p>
+          <p className="houseHeir">{heir.name}</p>
+        </div>
+      </section>
     );
   }
 }

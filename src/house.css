@@ -1,0 +1,11 @@
+.single-house {
+  padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+}
+.single-house:hover {
+  background: var(--accent-color);
+}
+.single-house:hover > a {
+  color: var(--background-color);
+  text-decoration: none;
+  font-weight: bold;
+}
