@@ -1,0 +1,7 @@
+button {
+  font-family: unset;
+  max-height: 2rem;
+  min-width: 4rem;
+  align-self: center;
+  margin: 0 0.5rem;
+}

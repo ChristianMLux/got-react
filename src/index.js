@@ -18,6 +18,7 @@ ReactDOM.render(
           alt="game of thrones logo, big, black/white"
         ></img>
         <h1>House-Browser</h1>
+        <nav></nav>
       </header>
       <Switch>
         <Route path="/:houseId" component={HouseDetails} />

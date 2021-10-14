@@ -32,3 +32,8 @@
   text-decoration: none;
   font-weight: bold;
 }
+.browse-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+}

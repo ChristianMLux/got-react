@@ -2,6 +2,7 @@ import React from "react";
 
 import House from "./House";
 import "./allHouses.css";
+import MainButton from "./Button";
 
 let housePageCount = 24;
 let houseCounter = 1;
@@ -15,8 +16,13 @@ class AllHouses extends React.Component {
       houses: [],
     };
   }
-  switchPage() {
+  switchPageUp() {
     houseCounter++;
+  }
+  switchPageDown() {
+    if (houseCounter > 0) {
+      houseCounter--;
+    }
   }
 
   componentDidMount() {
@@ -75,7 +81,20 @@ class AllHouses extends React.Component {
     } else {
       return (
         <section className="all-houses">
-          <button onClick={this.switchPage}>Next Houses</button>
+          <div class="browse-wrapper">
+            <MainButton
+              buttonClass="browse-btn"
+              buttonID="browseBackBTN"
+              buttonFunction={this.switchPageDown}
+              buttonText="Prev. Houses"
+            />
+            <MainButton
+              buttonClass="browse-btn"
+              buttonID="browseForwardBTN"
+              buttonFunction={this.switchPageUp}
+              buttonText="Next Houses"
+            />
+          </div>
           <ul className="houses-list">
             {houses.map((house) => (
               <li className="single-house">
