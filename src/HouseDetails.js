@@ -1,6 +1,10 @@
 import React from "react";
 
 import "./houseDetails.css";
+import "./InnerInfoWrapper";
+import InnerInfoWrapper from "./InnerInfoWrapper";
+import InnerInfoList from "./InnerInfoList";
+
 class HouseDetails extends React.Component {
   constructor() {
     super();
@@ -67,33 +71,30 @@ class HouseDetails extends React.Component {
       <section className="house-detail-section">
         <div className="heading-wrapper">
           <h2 className="house-name">{house.name}</h2>
-          <p className="house-words">{house.words}</p>
+          <p className="house-words">{house.words ? house.words : ""}</p>
         </div>
         <p className="coat-of-arms">&#187; {house.coatOfArms} &#171;</p>
         <div className="info-wrapper">
-          <div className="inner-info-wrapper">
-            <p className="inner-info-heading">Current Lord:</p>
-            <p className="currentLord">
-              {currentLord.titles ? currentLord.titles[0] : ""}
-              {currentLord.name}
-            </p>
-          </div>
-          <div className="inner-info-wrapper">
-            <p className="inner-info-heading">Overlord:</p>
-            <p className="houseOverlord">{overlord.name}</p>
-          </div>
-          <div className="inner-info-wrapper">
-            <p className="inner-info-heading">Founder:</p>
-            <p className="houseFounder">{founder.name}</p>
-          </div>
-          <div className="inner-info-wrapper">
-            <p className="inner-info-heading">Heir:</p>
-            <p className="houseHeir">{heir.name}</p>
-          </div>
-          <div className="inner-info-wrapper">
-            <p className="inner-info-heading">Sworn Members:</p>
-            <ul class="sworn-member-list">{swornMembers}</ul>
-          </div>
+          <InnerInfoWrapper
+            innerInfoHeading="Current Lord:"
+            innerInfoContent={currentLord.name}
+          />
+          <InnerInfoWrapper
+            innerInfoHeading="Overlord:"
+            innerInfoContent={overlord.name}
+          />
+          <InnerInfoWrapper
+            innerInfoHeading="Founder:"
+            innerInfoContent={founder.name}
+          />
+          <InnerInfoWrapper
+            innerInfoHeading="Heir:"
+            innerInfoContent={heir.name}
+          />
+          <InnerInfoList
+            innerInfoHeading="Sworn Members:"
+            innerInfoList={swornMembers}
+          />
         </div>
       </section>
     );
