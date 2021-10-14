@@ -80,28 +80,51 @@ class HouseDetails extends React.Component {
             buttonFunction={this.props.history.goBack}
           />
         </div>
-        <p className="coat-of-arms">&#187; {house.coatOfArms} &#171;</p>
+        {house.coatOfArms ? (
+          <p className="coat-of-arms">&#187; {house.coatOfArms} &#171;</p>
+        ) : null}
+
         <div className="info-wrapper">
-          <InnerInfoWrapper
-            innerInfoHeading="Current Lord:"
-            innerInfoContent={currentLord.name}
-          />
-          <InnerInfoWrapper
-            innerInfoHeading="Overlord:"
-            innerInfoContent={overlord.name}
-          />
-          <InnerInfoWrapper
-            innerInfoHeading="Founder:"
-            innerInfoContent={founder.name}
-          />
-          <InnerInfoWrapper
-            innerInfoHeading="Heir:"
-            innerInfoContent={heir.name}
-          />
-          <InnerInfoList
-            innerInfoHeading="Sworn Members:"
-            innerInfoList={swornMembers}
-          />
+          {house.region ? (
+            <InnerInfoWrapper
+              innerInfoHeading="Region: "
+              innerInfoContent={house.region}
+            />
+          ) : null}
+
+          {currentLord.name ? (
+            <InnerInfoWrapper
+              innerInfoHeading="Current Lord: "
+              innerInfoContent={currentLord.name}
+            />
+          ) : null}
+
+          {overlord.name ? (
+            <InnerInfoWrapper
+              innerInfoHeading="Overlord: "
+              innerInfoContent={overlord.name}
+            />
+          ) : null}
+
+          {founder.name ? (
+            <InnerInfoWrapper
+              innerInfoHeading="Founder: "
+              innerInfoContent={founder.name}
+            />
+          ) : null}
+
+          {heir.name ? (
+            <InnerInfoWrapper
+              innerInfoHeading="Heir: "
+              innerInfoContent={heir.name}
+            />
+          ) : null}
+          {swornMembers ? (
+            <InnerInfoList
+              innerInfoHeading="Sworn Members: "
+              innerInfoList={swornMembers}
+            />
+          ) : null}
         </div>
       </section>
     );
