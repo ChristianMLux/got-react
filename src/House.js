@@ -8,7 +8,6 @@ class House extends React.Component {
         className="listEntry"
         to={{
           pathname: "/" + this.props.index,
-          state: { name: "25" },
         }}
       >
         {this.props.house}

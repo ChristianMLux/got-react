@@ -95,7 +95,7 @@ class HouseDetails extends React.Component {
           {currentLord.name ? (
             <InnerInfoWrapper
               innerInfoHeading="Current Lord: "
-              innerInfoContent={currentLord.name}
+              innerInfoContent={currentLord.titles[0] + " " + currentLord.name}
             />
           ) : null}
 
@@ -119,6 +119,7 @@ class HouseDetails extends React.Component {
               innerInfoContent={heir.name}
             />
           ) : null}
+
           {swornMembers ? (
             <InnerInfoList
               innerInfoHeading="Sworn Members: "
