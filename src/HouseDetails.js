@@ -4,6 +4,7 @@ import "./houseDetails.css";
 import "./InnerInfoWrapper";
 import InnerInfoWrapper from "./InnerInfoWrapper";
 import InnerInfoList from "./InnerInfoList";
+import MainButton from "./Button";
 
 class HouseDetails extends React.Component {
   constructor() {
@@ -72,6 +73,12 @@ class HouseDetails extends React.Component {
         <div className="heading-wrapper">
           <h2 className="house-name">{house.name}</h2>
           <p className="house-words">{house.words ? house.words : ""}</p>
+          <MainButton
+            buttonClass="back-btn"
+            buttonID="backBTN"
+            buttonText="Back"
+            buttonFunction={this.props.history.goBack}
+          />
         </div>
         <p className="coat-of-arms">&#187; {house.coatOfArms} &#171;</p>
         <div className="info-wrapper">
